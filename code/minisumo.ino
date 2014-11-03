@@ -52,6 +52,9 @@ void setup() {
   //motors.flipRightMotor(true);
  
   pinMode(LED, HIGH);
+  pinMode(TrigPin, OUTPUT);
+  pinMode(EchoPin, INPUT);
+  
   waitForButtonAndCountDown();
   
 }
@@ -114,18 +117,15 @@ void loop() {
   // ahead!
   // The PING))) is triggered by a HIGH pulse of 2 or more microseconds.
   // Give a short LOW pulse beforehand to ensure a clean HIGH pulse:
-  pinMode(TrigPin, OUTPUT);
   digitalWrite(TrigPin, LOW);
   delayMicroseconds(2);
-  pinMode(EchoPin, INPUT);
-  digitalWrite(EchoPin, HIGH);
+  digitalWrite(TrigPin, HIGH);
   delayMicroseconds(5);
-  digitalWrite(pingPin, LOW);
+  digitalWrite(TrigPin, LOW);
 
   // The same pin is used to read the signal from the PING))): a HIGH
   // pulse whose duration is the time (in microseconds) from the sending
   // of the ping to the reception of its echo off of an object.
-  pinMode(EchoPin, INPUT);
   duration = pulseIn(EchoPin, HIGH);
 
   // convert the time into a distance
