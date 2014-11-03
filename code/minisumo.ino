@@ -19,7 +19,8 @@ ZumoBuzzer buzzer;
 ZumoMotors motors;
 Pushbutton button(ZUMO_BUTTON); // pushbutton on pin 12
 
-const int pingPin = 7; // PING))) sensor pin number
+const int TrigPin = 7; // Trig Pin))) sensor pin number
+const int EchoPin = 8; // Echo Pin))) sensor pin number
 
 // uncomment according to the type of QTR sensor you're using
 // two QTR-1RC sensors on pins A0 (left) and A3 (right)
@@ -47,7 +48,7 @@ void waitForButtonAndCountDown() {
 void setup() {
   Serial.begin(9600);
   // uncomment if necessary to correct motor directions
-  motors.flipLeftMotor(true);
+  //motors.flipLeftMotor(true);
   //motors.flipRightMotor(true);
  
   pinMode(LED, HIGH);
@@ -113,18 +114,19 @@ void loop() {
   // ahead!
   // The PING))) is triggered by a HIGH pulse of 2 or more microseconds.
   // Give a short LOW pulse beforehand to ensure a clean HIGH pulse:
-  pinMode(pingPin, OUTPUT);
-  digitalWrite(pingPin, LOW);
+  pinMode(TrigPin, OUTPUT);
+  digitalWrite(TrigPin, LOW);
   delayMicroseconds(2);
-  digitalWrite(pingPin, HIGH);
+  pinMode(EchoPin, INPUT);
+  digitalWrite(EchoPin, HIGH);
   delayMicroseconds(5);
   digitalWrite(pingPin, LOW);
 
   // The same pin is used to read the signal from the PING))): a HIGH
   // pulse whose duration is the time (in microseconds) from the sending
   // of the ping to the reception of its echo off of an object.
-  pinMode(pingPin, INPUT);
-  duration = pulseIn(pingPin, HIGH);
+  pinMode(EchoPin, INPUT);
+  duration = pulseIn(EchoPin, HIGH);
 
   // convert the time into a distance
   inches = microsecondsToInches(duration);
