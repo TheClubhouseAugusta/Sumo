@@ -1,9 +1,0 @@
-Arduino Library: https://code.google.com/p/gp2y0a21yk-library/
-From 8-bit ADC to Distance in Centimeters:
-distance = 4 * 12343.85 * (8bit reading)^-1.15
-
-From 10-bit ADC to Distance in Centimeters:
-distance = 12343.85 * (10bit reading)^-1.15
-
-From Voltage to Distance in Centimeters:
-distance (cm) = 27.86 (voltage reading)^-1.15
